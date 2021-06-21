@@ -6,7 +6,6 @@
 #include "driverlib/sysctl.h"
 #include "driverlib/systick.h"
 
-uint8_t LED_D1 = 0;
 uint8_t LED_D4 = 0;
 
 void SysTick_Handler(void){
@@ -26,14 +25,19 @@ void main(void){
   SysTickIntEnable();
   SysTickEnable();
   
+  //Counter
   float counter = 0;
+  
+  //Frequencia de operação
   float frequencia = SysTickValueGet();
+  
+  //Constatnte contagem
   float counterlimit = frequencia*1;
   
   while(1){
     if(counter >= counterlimit)
     {
-      LED_D4 ^= GPIO_PIN_0; // Troca estado do LED D1
+      LED_D4 ^= GPIO_PIN_0; // Troca estado do LED D4
       GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_0, LED_D4);
       counter = 0;
     }

@@ -14,7 +14,7 @@ void SysTick_Handler(void){
 
 void main(void){
   SysTickPeriodSet(12000000); // f = 1Hz para clock = 24MHz
-  
+
   SysCtlPeripheralEnable(SYSCTL_PERIPH_GPIOF); // Habilita GPIO F (LED D4 = PF0)
   while(!SysCtlPeripheralReady(SYSCTL_PERIPH_GPIOF)); // Aguarda final da habilitação
     
@@ -32,13 +32,13 @@ void main(void){
   float frequencia = SysTickValueGet();
   
   //Constatnte contagem
-  float counterlimit = frequencia*1;
+  float counterlimit = 12000000;
   
   while(1){
     if(counter >= counterlimit)
     {
-      LED_D4 ^= GPIO_PIN_0; // Troca estado do LED D4
       GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_0, LED_D4);
+      LED_D4 ^= GPIO_PIN_0; // Troca estado do LED D4
       counter = 0;
     }
     else

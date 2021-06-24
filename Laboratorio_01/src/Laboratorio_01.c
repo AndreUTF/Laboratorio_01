@@ -32,7 +32,7 @@ void main(void){
   float frequencia = SysTickValueGet();
   
   //Constatnte contagem
-  float counterlimit = 12000000;
+  float counterlimit = 2400000;
   
   while(1){
     if(counter >= counterlimit)
